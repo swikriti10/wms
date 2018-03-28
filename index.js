@@ -2,7 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const request = require("request");
+
 var result="";
 //var app = express();
 const restService = express();
@@ -22,16 +22,6 @@ restService.post("/echo", function(req, res) {
         ? req.body.result.parameters.echoText
         : "wrong";
 
-    
-    var adr = 'https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/demo7.xsjs';
-    request.get({ url: "https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/demo7.xsjs"}, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            result= res.json(body);
-        }
-        else{
-            result="No data";
-        }
-    });
 
     return res.json({
         speech: speech,
