@@ -37,8 +37,8 @@ restService.post("/echo", function(req, res) {
         source: "wms"
     });
 });
-restService.listen(process.env.PORT || 1337, function () {
-    console.log("running server");
+restService.listen(process.env.PORT || 8000, function() {
+  console.log("Server up and listening");
 });
 
 
