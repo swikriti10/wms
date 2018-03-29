@@ -30,15 +30,17 @@ restService.post("/echo", function(req, res) {
           result = "No data";
       }
   });
+  return res.json({
+      speech: result,
+      displayText: result,
+      source: "wms"
+  });
+  });
 
-    return res.json({
-        speech: result,
-        displayText: result,
-        source: "wms"
-    });
+    
 });
-restService.listen(process.env.PORT || 8000, function() {
-  console.log("Server up and listening");
+restService.listen(process.env.PORT || 1337, function () {
+    console.log("running server");
 });
 
 
