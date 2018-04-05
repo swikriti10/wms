@@ -1,9 +1,8 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-
 const request = require("request");
-var result="";
+
 //var app = express();
 const restService = express();
 //var speech = "";
@@ -14,34 +13,32 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
-restService.post("/echo", function(req, res) {
-  var  speech =
-      req.body.result &&
-      req.body.result.parameters &&
-      req.body.result.parameters.echoText
-        ? req.body.result.parameters.echoText
-        : "wrong";
+restService.post("/echo", function (req, res) {
 
-  request.get({ url: "https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/demo7.xsjs" }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-          result = res.json(body);
-      }
-      else {
-          result = "No data";
-      }
+    function basicCard () {
+        const app = new ActionsSdkApp({request,response});
+        app.ask(app.buildRichResponse()
+          // Create a basic card and add it to the rich response
+          .addSimpleResponse('Math and prime numbers it is!')
+          .addBasicCard(app.buildBasicCard('42 is an even composite number. It' +
+            'is composed of three distinct prime numbers multiplied together. It' +
+            'has a total of eight divisors. 42 is an abundant number, because the' +
+            'sum of its proper divisors 54 is greater than itself. To count from' +
+            '1 to 42 would take you about twenty-one…')
+            .setTitle('Math & prime numbers')
+            .addButton('Read more', 'https://example.google.com/mathandprimes')
+            .setImage('https://example.google.com/42.png', 'Image alternate text')
+            .setImageDisplay('CROPPED')
+          )
+        );
+    }    
+    
+
   
-   
-  });
-
-  return res.json({
-      speech: speech,
-      displayText: speech,
-      source: "wms"
-  });
 
 });
+
 restService.listen(process.env.PORT || 8000, function () {
-    console.log("running server");
+    console.log("Server Running");
 });
-
 
