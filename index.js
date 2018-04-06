@@ -1,30 +1,40 @@
 
 "use strict";
 
-const App = require('actions-on-google').DialogflowApp;
- 
-const functions = require('firebase-functions');
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) =&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt; {
-    
-    // connect functions to our intents here
-    
+const express = require("express");
+const bodyParser = require("body-parser");
+const request = require("request");
+var result = "";
+var cresult="";
+let url="";
+var a = "";
+//var app = express();
+const restService = express();
+//var speech = "";
+restService.use(
+  bodyParser.urlencoded({
+      extended: true
+  })
+);
+
+restService.use(bodyParser.json());
+restService.post("/echo", function (req, res) {
+
+
+    if (app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT)) {
+        app.ask(app.buildRichResponse()
+          // Create a basic card and add it to the rich response
+                  .addSimpleResponse('My recommendations are')
+                  .addBasicCard(app.buildBasicCard('With my recent trip to Goa')
+                      .setTitle('Touxeachem feast cucumber festival Goa')
+                      .addButton('Read more')
+                      .setImage('https://firebasestorage.googleapis.com......', 'Culture,Heritage')
+                      )
+             );
+    } else {
+        app.ask(app.buildRichResponse().addSimpleResponse('Surfaceless!'));
+    }
 });
-const app = new App({request, response});
-
-let actionMap = new Map();
-
-actionMap.set('input.welcome', welcome);
-
-app.handleRequest(actionMap);
-function welcome(app) {
-    
-    app.tell("Hello World from Clearbridge Mobile!");
-    
-}
-
-
-
 restService.listen(process.env.PORT || 8000, function () {
     console.log("Server Running");
 });
-
