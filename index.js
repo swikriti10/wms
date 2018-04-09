@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const ActionsSdkApp = require("actions-on-google").ActionsSdkApp;
 
 const restService = express();
 
@@ -131,35 +132,29 @@ restService.post("/video", function(req, res) {
 });
 
 restService.post("/slack-test", function(req, res) {
-  var slack_message = {
-    //text: "Details of JIRA board for Browse and Commerce",
-      items: [
-          {
-              simpleResponse: {
-                  textToSpeech: "Math and prime numbers it is!"
-              }
-          },
-                        {
-                            basicCard: {
-                                title: "Math & prime numbers",
-                                formattedText: "42 is an even composite number. It\n    is composed of three distinct prime numbers multiplied together. It\n    has a total of eight divisors. 42 is an abundant number, because the\n    sum of its proper divisors 54 is greater than itself. To count from\n    1 to 42 would take you about twenty-one…",
-                                image: {
-                                    url: "https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350",
-                                    accessibilityText: "Image alternate text"
-                                }
-                            }
-                        }
-                        ]
-  };
-  return res.json({
-    speech: "speech",
-    displayText: "speech",
-    source: "webhook-echo-sample",
-    data: {
-      google: slack_message
+    function basicCard () {
+        const app = new ActionsSdkApp({request:req, response:res});
+        app.ask(app.buildRichResponse()
+          // Create a basic card and add it to the rich response
+          .addSimpleResponse('Math and prime numbers it is!')
+          .addBasicCard(app.buildBasicCard('42 is an even composite number. It' +
+            'is composed of three distinct prime numbers multiplied together. It' +
+            'has a total of eight divisors. 42 is an abundant number, because the' +
+            'sum of its proper divisors 54 is greater than itself. To count from' +
+            '1 to 42 would take you about twenty-one…')
+            .setTitle('Math & prime numbers')
+            .addButton('Read more', 'https://example.google.com/mathandprimes')
+            .setImage('https://example.google.com/42.png', 'Image alternate text')
+            .setImageDisplay('CROPPED')
+          )
+        );
     }
-  });
 });
+
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
+
+
+
+
