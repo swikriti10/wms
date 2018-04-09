@@ -78,7 +78,7 @@ restService.post("/video", function(req, res) {
     displayText: "",
     source: "webhook-echo-sample",
     data: {
-      slack: slack_message
+      google: slack_message
     }
   });
 });
