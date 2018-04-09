@@ -158,7 +158,7 @@ restService.post("/slack-test", function(req, res) {
     displayText: "speech",
     source: "webhook-echo-sample",
     data: {
-      google assistant: slack_message
+      "google assistant": slack_message
     }
   });
 });
