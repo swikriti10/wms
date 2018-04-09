@@ -131,7 +131,7 @@ restService.post("/video", function(req, res) {
 });
 
   restService.post("/slack-test", function(req, res) {
-    var x{
+    var x={
   "google": {
   "expect_user_response": true,
   "rich_response": {
