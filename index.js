@@ -132,7 +132,7 @@ restService.post("/video", function(req, res) {
 
 
     restService.post("/slack-test", function(req, res) {
-    {
+    
   "google": {
   "expect_user_response": true,
   "rich_response": {
@@ -178,7 +178,7 @@ restService.post("/video", function(req, res) {
   ]
 }
 }
-}
+
 
 });
 
