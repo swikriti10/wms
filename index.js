@@ -132,69 +132,34 @@ restService.post("/video", function(req, res) {
 
 restService.post("/slack-test", function(req, res) {
   var slack_message = {
-    text: "Details of JIRA board for Browse and Commerce",
-    attachments: [
-      {
-        title: "JIRA Board",
-        title_link: "http://www.google.com",
-        color: "#36a64f",
-
-        fields: [
+    //text: "Details of JIRA board for Browse and Commerce",
+      items: [
           {
-            title: "Epic Count",
-            value: "50",
-            short: "false"
+              simpleResponse: {
+                  textToSpeech: "Math and prime numbers it is!"
+              }
           },
-          {
-            title: "Story Count",
-            value: "40",
-            short: "false"
-          }
-        ],
-
-        thumb_url:
-          "https://stiltsoft.com/blog/wp-content/uploads/2016/01/5.jira_.png"
-      },
-      {
-        title: "Story status count",
-        title_link: "http://www.google.com",
-        color: "#f49e42",
-
-        fields: [
-          {
-            title: "Not started",
-            value: "50",
-            short: "false"
-          },
-          {
-            title: "Development",
-            value: "40",
-            short: "false"
-          },
-          {
-            title: "Development",
-            value: "40",
-            short: "false"
-          },
-          {
-            title: "Development",
-            value: "40",
-            short: "false"
-          }
-        ]
-      }
-    ]
+                        {
+                            basicCard: {
+                                title: "Math & prime numbers",
+                                formattedText: "42 is an even composite number. It\n    is composed of three distinct prime numbers multiplied together. It\n    has a total of eight divisors. 42 is an abundant number, because the\n    sum of its proper divisors 54 is greater than itself. To count from\n    1 to 42 would take you about twenty-one…",
+                                image: {
+                                    url: "https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350",
+                                    accessibilityText: "Image alternate text"
+                                }
+                            }
+                        }
+                        ]
   };
   return res.json({
     speech: "speech",
     displayText: "speech",
     source: "webhook-echo-sample",
     data: {
-      slack: slack_message
+      google: slack_message
     }
   });
 });
-
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
