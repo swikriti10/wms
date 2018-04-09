@@ -29,49 +29,94 @@ restService.post("/video", function(req, res) {
     var slack_message={
   
   expect_user_response: true,
-  rich_response: {
-  items: [
-    {
-      simpleResponse: {
-          textToSpeech:"This is the first simple response for a basic card"
-      }
-    },
-    {
-      basicCard: {
-        title:"Title: this is a title",
-        formattedText:"This is a basic card.  Text in a\n      basic card can include \"quotes\" and most other unicode characters\n      including emoji 📱.  Basic cards also support some markdown\n      formatting like *emphasis* or _italics_, **strong** or __bold__,\n      and ***bold itallic*** or ___strong emphasis___ as well as other things\n      like line  \nbreaks",
-        subtitle:
-        "This is a subtitle",
-        image: {
-          url:"https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
-          accessibilityText:"Image alternate text"
+  richResponse: {
+           items: [
+				{
+				    simpleResponse: {
+				        textToSpeech:"This is a simple response for a list"
+				    }
+				}
+            ],
+            suggestions: [
+				{
+				    title:"List"
+				},
+				{
+				    title:"Carousel"
+				},
+				{
+				    title:"Suggestions"
+				}
+            ]
         },
-        buttons: [
-          {
-            title:"This is a button",
-            openUrlAction:{
-              url:"https://assistant.google.com/"
+        systemIntent: {
+            intent:"actions.intent.OPTION",
+            data: {
+                @type : "type.googleapis.com/google.actions.v2.OptionValueSpec",
+                listSelect: {
+                    title:"List Title","items": [
+						{
+						    optionInfo: {
+						        key:"title",
+						        synonyms: [
+								"synonym of title 1",
+								"synonym of title 2",
+								"synonym of title 3"
+						        ]
+						    },
+						    title:"Title of First ListItem",
+						    description:"This is a description of a list item",
+						    image: {
+						        url:"https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
+						        accessibilityText:"Image alternate text"}
+						},
+						{
+						    optionInfo: {
+						        key:"googleHome",
+						        synonyms: [
+									"Google Home Assistant","Assistant on the Google Home"
+						        ]
+						    },
+						    title:"Google Home",
+						    description:"Google Home is a voice-activated speaker powered by the Google Assistant.",
+						    image: {
+						        url:"https://lh3.googleusercontent.com/Nu3a6F80WfixUqf_ec_vgXy_c0-0r4VLJRXjVFF_X_CIilEu8B9fT35qyTEj_PEsKw",
+						        accessibilityText:"Google Home"
+						    }
+						},
+						{
+						    optionInfo: {
+						        key:"googlePixel",
+						        synonyms: [
+									"Google Pixel XL",
+									"Pixel","Pixel XL"
+						        ]
+						    },
+						    title:"Google Pixel",
+						    description:"Pixel. Phone by Google.",
+						    image: {
+						        url:"https://storage.googleapis.com/madebygoog/v1/Pixel/Pixel_ColorPicker/Pixel_Device_Angled_Black-720w.png",
+						        accessibilityText:"Google Pixel"
+						    }
+						},
+						{
+						    optionInfo: {
+						        key:"googleAllo",
+						        synonyms: [
+									"Allo"
+						        ]
+						    },
+						    title:"Google Allo",
+						    description:"Introducing Google Allo, a smart messaging app that helps you say more and do more.",
+						    image: {
+						        url:"https://allo.google.com/images/allo-logo.png",
+						        accessibilityText:"Google Allo Logo"
+						    }
+						}
+                    ]
+                }
             }
-          }
-        ]
-      }
-    },
-    {
-      simpleResponse: {
-        textToSpeech:"This is the 2nd simple response ",
-        displayText:"This is the 2nd simple response"
-      }
-    }
-  ],
-  suggestions:
-  [
-    {"title":"Basic Card"},
-    {"title":"List"},
-    {"title":"Carousel"},
-    {"title":"Suggestions"}
-  ]
-}
-
+        }
     };
     return res.json({
     speech: "",
