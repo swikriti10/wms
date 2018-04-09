@@ -2,7 +2,6 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const ActionsSdkApp = require("actions-on-google").ActionsSdkApp;
 
 const restService = express();
 
