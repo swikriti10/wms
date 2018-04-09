@@ -130,9 +130,8 @@ restService.post("/video", function(req, res) {
   });
 });
 
-
-    restService.post("/slack-test", function(req, res) {
-    
+  restService.post("/slack-test", function(req, res) {
+    var x{
   "google": {
   "expect_user_response": true,
   "rich_response": {
@@ -178,6 +177,14 @@ restService.post("/video", function(req, res) {
   ]
 }
 }
+    };
+    return res.json({
+    speech: "",
+    displayText: "speech",
+    source: "webhook-echo-sample",
+    data:x
+  });
+});
 
 
 });
