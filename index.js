@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-var myObj,x;
+const request = require("request");
 const restService = express();
 
 restService.use(
@@ -15,10 +15,32 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 
-    
-    myObj = { "name": "John", "age": 30, "car": null };
-     x = myObj.name;
+    var myObj = [
+   {
+       'CustomerID': "ALFKI",
+       'CompanyName': "Alfreds Futterkiste",
+       'ContactName': "Maria Anders"
 
+
+   },
+   {
+       'CustomerID': "ANATR",
+       'CompanyName': "Ana Trujillo Emparedados y helados",
+       'ContactName': "Ana Trujillo"
+
+   }];
+
+    var obj = [];
+    for (i = 0; i < myObj.length; i++) {
+
+        var tmp = {
+            'optionInfo': { 'key': myObj[i].CustomerID },
+            'title': myObj[i].CompanyName,
+            'description': myObj[i].ContactName
+        };
+
+        obj.push(tmp);
+    }
         var slack_message = {
 
             expect_user_response: true,
@@ -29,26 +51,16 @@ restService.post("/slack-test", function (req, res) {
                           textToSpeech: "This is the first simple response for a basic card"
                       }
                   },
-                  {
-                      basicCard: {
-                          title: x,
-                          formattedText: "hi",
-                          subtitle: "hi",
+                {
+                    listSelect: {
+                        title: "work order details",
+                        items: obj
+                    }
+                },
 
-                          image: {
-                              url: "https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
-                              accessibilityText: "Image alternate text"
-                          },
-                          buttons: [
-                            {
-                                title: "This is a button",
-                                openUrlAction: {
-                                    url: "https://assistant.google.com/"
-                                }
-                            }
-                          ]
-                      }
-                  },
+
+
+                  
                   {
                       simpleResponse: {
                           textToSpeech: "This is the 2nd simple response ",
