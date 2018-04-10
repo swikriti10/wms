@@ -55,7 +55,7 @@ restService.post("/slack-test", function (req, res) {
                 {
                     listSelect: {
                         title: "work order details",
-                        items: [obj]
+                        items: obj
                     }
                 },
 
