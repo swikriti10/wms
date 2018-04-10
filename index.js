@@ -32,9 +32,9 @@ restService.post("/slack-test", function (req, res) {
                   },
                   {
                       basicCard: {
-                          title: json.value[0].CustomerID,
-                          formattedText: json.value[0].CompanyName,
-                          subtitle: json.value[0].ContactName,
+                          title: "hi",
+                          formattedText: "hi",
+                          subtitle: "hi",
 
                           image: {
                               url: "https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
