@@ -49,19 +49,11 @@ restService.post("/slack-test", function (req, res) {
                 items: [
                   {
                       simpleResponse: {
-                          textToSpeech: "This is the first simple response for a basic card"
+                          textToSpeech:obj[0].title
                       }
                   },
-                {
-                    listSelect: {
-                        title: "work order details",
-                        items: obj
-                    }
-                },
-
-
-
-                  
+               
+                 
                   {
                       simpleResponse: {
                           textToSpeech: "This is the 2nd simple response ",
