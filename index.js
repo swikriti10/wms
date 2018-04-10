@@ -16,10 +16,7 @@ restService.use(bodyParser.json());
 restService.post("/slack-test", function (req, res) {
 
     const url = `http://services.odata.org/V3/Northwind/Northwind.svc/Customers?$format=json`;
-    request.get(url, function (error, response, body) {
-        let json = JSON.parse(body);
-        //console.log(" city :" + json.value[0].ContactName);
-        //console.log(body);
+    
         var slack_message = {
 
             expect_user_response: true,
@@ -76,8 +73,6 @@ restService.post("/slack-test", function (req, res) {
                 google: slack_message
             }
         });
-
-    });
 
     
     
