@@ -49,7 +49,7 @@ restService.post("/slack-test", function (req, res) {
                 items: [
                   {
                       simpleResponse: {
-                          textToSpeech:obj[0].title
+                          textToSpeech:"test"
                       }
                   },
                
