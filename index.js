@@ -52,7 +52,26 @@ restService.post("/slack-test", function (req, res) {
                           textToSpeech:"test"
                       }
                   },
-               
+               {
+      basicCard: {
+        title:"Title: this is a title",
+        formattedText:"This is a basic card.  Text in a\n      basic card can include \"quotes\" and most other unicode characters\n      including emoji ??.  Basic cards also support some markdown\n      formatting like *emphasis* or _italics_, **strong** or __bold__,\n      and ***bold itallic*** or ___strong emphasis___ as well as other things\n      like line  \nbreaks",
+        subtitle:
+        "This is a subtitle",
+        image: {
+          url:"https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
+          accessibilityText:"Image alternate text"
+        },
+        buttons: [
+          {
+            title:"This is a button",
+            openUrlAction:{
+              url:"https://assistant.google.com/"
+            }
+          }
+        ]
+      }
+    },
                  
                   {
                       simpleResponse: {
