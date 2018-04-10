@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 const restService = express();
  var obj = [];
+ var myObj=[];
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -15,7 +16,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 
-    var myObj = [
+     myObj = [
    {
        'CustomerID': "ALFKI",
        'CompanyName': "Alfreds Futterkiste",
