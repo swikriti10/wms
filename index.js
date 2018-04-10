@@ -2,6 +2,8 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const request = require("request");
+var result = "";
 
 const restService = express();
 
@@ -26,6 +28,15 @@ restService.post("/video", function(req, res) {
 });
 
   restService.post("/slack-test", function(req, res) {
+	const url = `http://services.odata.org/V3/Northwind/Northwind.svc/Customers?$format=json`;
+	  request.get(url, function (error, response, body) {
+        let json = JSON.parse(body);
+		    
+		  result=json.value[0].ContactName;
+	  });
+	  
+	  
+	  
     var slack_message={
   
   expect_user_response: true,
@@ -53,8 +64,8 @@ restService.post("/video", function(req, res) {
         
     };
     return res.json({
-    speech: "",
-    displayText: "",
+    speech: result,
+    displayText: result,
     source: "webhook-echo-sample",
     data: {
       google: slack_message
