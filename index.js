@@ -29,7 +29,7 @@ restService.post("/slack-test", function (req, res) {
               },
               {
                   browse_carousel_card: {
-                      title: "Things to learn about",
+                     
                       items: [
                           {
           description: "at price of Rs. 57,999",
@@ -55,8 +55,11 @@ restService.post("/slack-test", function (req, res) {
             "url": "https://paytmmall.com/apple-macbook-pro-mpxq2-r2-core-i5-6th-gen-8-gb-128-gb-33-78-cm-13-3-mac-os-CMPLXLAPAPPLE-MACBOODUMM202563C836CCA-pdp?product_id=145129487&discoverability=online&src=grid&utm_source=NDTV&utm_medium=affiliate&utm_campaign=NDTV-recharge&utm_term=Gadget360"
           }
         }
-                       ]
+          ]
                        }
+               
+              }
+               
               ]
                      
                   }
