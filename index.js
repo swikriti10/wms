@@ -32,20 +32,20 @@ restService.post("/slack-test", function (req, res) {
                       title: "Things to learn about",
                       items: [
                           {
-                              "optionInfo": {
+                              optionInfo: {
                                   "key": "MATH_AND_PRIME",
-                                  "synonyms": [
+                                  synonyms: [
                                       "math",
                                       "math and prime",
                                       "prime numbers",
                                       "prime"
                                   ]
                               },
-                              "title": "Math & prime numbers",
-                              "description": "42 is an abundant number because the sum of its proper divisors 54 is greater…",
-                              "image": {
-                                  "url": "http://example.com/math_and_prime.jpg",
-                                  "accessibilityText": "Math & prime numbers"
+                              title: "Math & prime numbers",
+                              description: "42 is an abundant number because the sum of its proper divisors 54 is greater…",
+                              image: {
+                                  url: "http://example.com/math_and_prime.jpg",
+                                  accessibilityText: "Math & prime numbers"
                               }
                           }
                              
@@ -56,31 +56,16 @@ restService.post("/slack-test", function (req, res) {
               ],
                       suggestions:
                       [
-                        { "title": "Basic Card" },
-                        { "title": "List" },
-                        { "title": "Carousel" },
-                        { "title": "Suggestions" }
+                        { title: "Basic Card" },
+                        { title: "List" },
+                        { title: "Carousel" },
+                        { title: "Suggestions" }
                       ]
                   }
 
-              };
-
-                 
-                  {
-                      simpleResponse: {
-                          textToSpeech: "This is the 2nd simple response ",
-                          displayText: "This is the 2nd simple response"
-                      }
-                  }
-                ],
-                suggestions:
-                [
-                  { "title": "Basic Card" },
-                  { "title": "List" },
-                  { "title": "Carousel" },
-                  { "title": "Suggestions" }
-                ]
-            }
+                        
+                
+              
 
         };
 
