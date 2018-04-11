@@ -22,10 +22,14 @@ restService.post("/slack-test", function (req, res) {
         expect_user_response: true,
         rich_response: {
             items: [
-            
+            {
+                  simpleResponse: {
+                      textToSpeech: "This is the first simple response for a basic card"
+                  }
+              },
               {
                   list_card: {
-                     
+                     title: "Awesome List",
                       items: [
                           {
          description: "Choose me for item 1",
