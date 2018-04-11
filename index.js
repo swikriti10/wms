@@ -28,7 +28,7 @@ restService.post("/slack-test", function (req, res) {
                   }
               },
               {
-                  browse_carousel_card: {
+                  carouselBrowse: {
                      
                       items: [
                           {
