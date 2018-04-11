@@ -28,7 +28,7 @@ restService.post("/slack-test", function (req, res) {
                   }
               },
               {
-                  listCard: {
+                  listSelect: {
                      title: "Awesome List",
                       items: [
                           {
