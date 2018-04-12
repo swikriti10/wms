@@ -14,7 +14,33 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
+ var myObj = [
+   {
+       'CustomerID': "ALFKI",
+       'CompanyName': "Alfreds Futterkiste",
+       'ContactName': "Maria Anders"
 
+
+   },
+   {
+       'CustomerID': "ANATR",
+       'CompanyName': "Ana Trujillo Emparedados y helados",
+       'ContactName': "Ana Trujillo"
+
+   }];
+   
+    for (i = 0; i < myObj.length; i++) {
+
+        var tmp = {
+            'optionInfo': { 'key': myObj[i].CustomerID },
+            'title': myObj[i].CompanyName,
+            'description': myObj[i].ContactName
+        };
+
+        obj.push(tmp);
+    }
+	
+	 a=JSON.stringify(obj);
 restService.post("/slack-test", function (req, res) {
 
  
