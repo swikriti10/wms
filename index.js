@@ -48,7 +48,8 @@ restService.post("/slack-test", function (req, res) {
             data: {
                 @type: "type.googleapis.com/google.actions.v2.OptionValueSpec",
                 listSelect: {
-                    title: "List Title", "items": [
+                    title: "List Title", 
+		    items: [
 						{
 						    optionInfo: {
 						        key: "title",
