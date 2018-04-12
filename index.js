@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const restService = express();
 var obj = [];
 var myObj = [];
+var a;
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -42,7 +43,7 @@ restService.post("/slack-test", function (req, res) {
         obj.push(tmp);
     }
 	
-	var a=JSON.stringify(obj);
+	 a=JSON.stringify(obj);
     var slack_message = {
 
         expect_user_response: true,
