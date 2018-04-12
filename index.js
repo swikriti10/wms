@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const restService = express();
 var obj = [];
 var myObj = [];
-var a;
+var a="";
 var i=0;
 restService.use(
   bodyParser.urlencoded({
