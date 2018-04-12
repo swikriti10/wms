@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const restService = express();
 var obj = [];
 var myObj = [];
-var a="";
+var a;
 var i=0;
 restService.use(
   bodyParser.urlencoded({
@@ -44,7 +44,7 @@ restService.post("/slack-test", function (req, res) {
         obj.push(tmp);
 	 
     }
-a=inputs[0].arguments[0].textValue;
+
     var slack_message = {
 
         expect_user_response: true,
@@ -87,8 +87,8 @@ a=inputs[0].arguments[0].textValue;
     };
 
     return res.json({
-        speech:a,
-        displayText:a,
+        speech:"",
+        displayText:"",
         
         source: "webhook-echo-sample",
 	    data: {
