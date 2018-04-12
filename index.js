@@ -44,7 +44,7 @@ restService.post("/slack-test", function (req, res) {
         obj.push(tmp);
 	 
     }
-
+a=originalRequest.data.inputs[0].arguments[0].textValue;
     var slack_message = {
 
         expect_user_response: true,
@@ -87,8 +87,8 @@ restService.post("/slack-test", function (req, res) {
     };
 
     return res.json({
-        speech:"",
-        displayText: "",
+        speech:a,
+        displayText:a,
         
         source: "webhook-echo-sample",
 	    data: {
