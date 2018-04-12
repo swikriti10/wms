@@ -87,18 +87,15 @@ restService.post("/slack-test", function (req, res) {
     };
 
     return res.json({
-        speech: "",
-        displayText: "",
-	    expect_user_response: false,
-	    
-        source: "webhook-echo-sample",
-        data: {
-            google: slack_message
-        }
+        speech: "hi",
+        displayText: "hi",
+	  	    
+        source: "webhook-echo-sample"
+        
     });
 
 
-
+ 
 
 });
 
