@@ -14,6 +14,9 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
+
+
+restService.post("/slack-test", function (req, res) {
  var myObj = [
    {
        'CustomerID': "ALFKI",
@@ -40,9 +43,6 @@ restService.use(bodyParser.json());
         obj.push(tmp);
     }
 	
-
-restService.post("/slack-test", function (req, res) {
-
  
     var slack_message = {
 
