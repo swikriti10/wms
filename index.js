@@ -41,6 +41,8 @@ restService.post("/slack-test", function (req, res) {
 
         obj.push(tmp);
     }
+	
+	var a=JSON.stringify(obj);
     var slack_message = {
 
         expect_user_response: true,
@@ -73,7 +75,7 @@ restService.post("/slack-test", function (req, res) {
                 "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
                 listSelect: {
                     title: "List Title", 
-		    items: obj
+		    items: a
                 }
             }
         }
