@@ -19,11 +19,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	var  speech =req.inputs[0].arguments[0].textValue;
-	
-	
-	
-	
+		
 	
 	    var myObj = [
     {
