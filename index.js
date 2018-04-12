@@ -92,7 +92,7 @@ restService.post("/slack-test", function (req, res) {
         
         source: "webhook-echo-sample",
 	    data: {
-            google: {expect_user_response: false}
+            google:slack_message
         }
 
         
