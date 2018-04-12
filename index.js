@@ -42,7 +42,7 @@ restService.post("/slack-test", function (req, res) {
         };
 
         obj.push(tmp);
-    };
+    }
  
     var slack_message = {
 
