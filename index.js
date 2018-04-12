@@ -77,42 +77,7 @@ restService.post("/slack-test", function (req, res) {
                 "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
                 listSelect: {
                     title: "List Title", 
-		    items: [
-                                  {
-                                      optionInfo: {
-                                          key: "title",
-                                          synonyms: [
-                                          "synonym of title 1",
-                                          "synonym of title 2",
-                                          "synonym of title 3"
-                                          ]
-                                      },
-                                      title: "Title of First ListItem",
-						    
-                                  },
-                                  {
-                                      optionInfo: {
-                                          key: "googleHome",
-                                          synonyms: [
-                                              "Google Home Assistant", "Assistant on the Google Home"
-                                          ]
-                                      },
-                                      title: "Google Home",
-						   
-                                  },
-                                  {
-                                      optionInfo: {
-                                          key: "googlePixel",
-                                          synonyms: [
-                                              "Google Pixel XL",
-                                              "Pixel", "Pixel XL"
-                                          ]
-                                      },
-                                      title: "Google Pixel",
-						   
-                                  }
-						
-                      ]
+		    items: obj
                 }
             }
         }
