@@ -44,7 +44,7 @@ restService.post("/slack-test", function (req, res) {
         obj.push(tmp);
 	 
     }
-a=assistant.getContextArgument('actions_intent_option', 'OPTION');
+
     var slack_message = {
 
         expect_user_response: true,
