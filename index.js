@@ -17,32 +17,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	 myObj = [
-    {
-        'CustomerID': "ALFKI",
-        'CompanyName': "Alfreds Futterkiste",
-        'ContactName': "Maria Anders"
-
-
-    },
-    {
-        'CustomerID': "ANATR",
-        'CompanyName': "Ana Trujillo Emparedados y helados",
-        'ContactName': "Ana Trujillo"
-
-    }];
-
-    
-    for (i = 0; i < myObj.length; i++) {
-
-        var tmp = {
-            'optionInfo': { 'key': myObj[i].CustomerID },
-            'title': myObj[i].CompanyName,
-            'description': myObj[i].ContactName
-        };
-
-        obj.push(tmp);
-    }
+	   
  
     var slack_message = {
 
@@ -123,12 +98,13 @@ restService.post("/slack-test", function (req, res) {
     return res.json({
         speech: "",
         displayText: "",
+	    expect_user_response: false,
+	    
         source: "webhook-echo-sample",
         data: {
             google: slack_message
         }
     });
-
 
 
 
