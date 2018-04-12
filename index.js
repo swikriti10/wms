@@ -4,8 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const restService = express();
- var obj = [];
- var myObj=[];
+var obj = [];
+var myObj = [];
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -15,64 +15,96 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
- 
 
-        var slack_message = {
+
+    var slack_message = {
 
         expect_user_response: true,
         rich_response: {
             items: [
-            {
-                  simpleResponse: {
-                      textToSpeech: "This is the first simple response for a basic card"
+                  {
+                      simpleResponse: {
+                          textToSpeech: "This is a simple response for a list"
+                      }
                   }
-              },
-              {
-                  list_card: {
-                     title: "Awesome List",
-                      items: [
-                     {
-              optionInfo: {
-                key: "One",
-                synonyms: []
-              },
-              title: "Item one"
-            },
-            {
-              optionInfo: {
-                key: "Two",
-                synonyms: []
-              },
-              title: "Item Two"
-            }
-          ]
-                       }
-               
-              }
-               
-              ]
-                     
-                  }
+            ],
+            suggestions: [
+				{
+				    title: "List"
+				},
+				{
+				    title: "Carousel"
+				},
+				{
+				    title: "Suggestions"
+				}
+            ]
 
-                        
-                
-              
 
-        };
+        },
 
-        return res.json({
-            speech: "",
-            displayText: "",
-            source: "webhook-echo-sample",
+        systemIntent: {
+            intent: "actions.intent.OPTION",
             data: {
-                google: slack_message
+                @type: "type.googleapis.com/google.actions.v2.OptionValueSpec",
+                listSelect: {
+                    title: "List Title", "items": [
+						{
+						    optionInfo: {
+						        key: "title",
+						        synonyms: [
+								"synonym of title 1",
+								"synonym of title 2",
+								"synonym of title 3"
+						        ]
+						    },
+						    title: "Title of First ListItem",
+						    
+						},
+						{
+						    optionInfo: {
+						        key: "googleHome",
+						        synonyms: [
+									"Google Home Assistant", "Assistant on the Google Home"
+						        ]
+						    },
+						    title: "Google Home",
+						   
+						},
+						{
+						    optionInfo: {
+						        key: "googlePixel",
+						        synonyms: [
+									"Google Pixel XL",
+									"Pixel", "Pixel XL"
+						        ]
+						    },
+						    title: "Google Pixel",
+						   
+						}
+						
+                    ]
+                }
             }
-        });
+        }
 
-    
 
-    
-    
+
+    };
+
+    return res.json({
+        speech: "",
+        displayText: "",
+        source: "webhook-echo-sample",
+        data: {
+            google: slack_message
+        }
+    });
+
+
+
+
+
 });
 
 
@@ -80,7 +112,3 @@ restService.post("/slack-test", function (req, res) {
 restService.listen(process.env.PORT || 8000, function () {
     console.log("Server up and listening");
 });
-
-
-
-
