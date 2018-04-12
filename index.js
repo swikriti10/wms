@@ -19,7 +19,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-		
+		var a=request.inputs[0].arguments[0].textValue
 	
 	    var myObj = [
     {
@@ -90,8 +90,8 @@ restService.post("/slack-test", function (req, res) {
     };
 
     return res.json({
-        speech:speech,
-        displayText:speech,
+        speech:a,
+        displayText:a,
         
         source: "webhook-echo-sample",
 	    data: {
