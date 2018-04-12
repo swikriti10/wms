@@ -7,6 +7,7 @@ const restService = express();
 var obj = [];
 var myObj = [];
 var a;
+var i=0;
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -32,7 +33,7 @@ restService.post("/slack-test", function (req, res) {
 
     }];
 	
- for (i = 0; i < myObj.length; i++) {
+ for (; i < myObj.length; i++) {
 
         var tmp = {
             'optionInfo': { 'key': myObj[i].CustomerID },
@@ -41,7 +42,7 @@ restService.post("/slack-test", function (req, res) {
         };
 
         obj.push(tmp);
-	 a=JSON.parse(obj);
+	 
     }
  
     var slack_message = {
