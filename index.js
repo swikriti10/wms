@@ -17,7 +17,20 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	   
+	    var myObj = [
+    {
+        'CustomerID': "ALFKI",
+        'CompanyName': "Alfreds Futterkiste",
+        'ContactName': "Maria Anders"
+
+
+    },
+    {
+        'CustomerID': "ANATR",
+        'CompanyName': "Ana Trujillo Emparedados y helados",
+        'ContactName': "Ana Trujillo"
+
+    }];
  
     var slack_message = {
 
