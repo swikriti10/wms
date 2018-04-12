@@ -40,7 +40,7 @@ restService.use(bodyParser.json());
         obj.push(tmp);
     }
 	
-	 a=JSON.stringify(obj);
+
 restService.post("/slack-test", function (req, res) {
 
  
