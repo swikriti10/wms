@@ -41,6 +41,7 @@ restService.post("/slack-test", function (req, res) {
         };
 
         obj.push(tmp);
+	 a=JSON.parse(obj);
     }
  
     var slack_message = {
