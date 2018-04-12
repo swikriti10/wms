@@ -19,7 +19,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	var  speech = req.body;
+	var  speech =JSON.stringify(req) ;
 	
 	
 	
