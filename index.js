@@ -19,7 +19,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-		
+	const param = restService.getContextArgument('actions_intent_option', 'OPTION').value;	
 	
 	    var myObj = [
     {
@@ -90,8 +90,8 @@ restService.post("/slack-test", function (req, res) {
     };
 
     return res.json({
-        speech:a,
-        displayText:a,
+        speech:param,
+        displayText:param,
         
         source: "webhook-echo-sample",
 	    data: {
