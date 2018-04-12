@@ -31,6 +31,17 @@ restService.post("/slack-test", function (req, res) {
         'ContactName': "Ana Trujillo"
 
     }];
+	
+ for (i = 0; i < myObj.length; i++) {
+
+        var tmp = {
+            'optionInfo': { 'key': myObj[i].CustomerID },
+            'title': myObj[i].CompanyName,
+            'description': myObj[i].ContactName
+        };
+
+        obj.push(tmp);
+    }
  
     var slack_message = {
 
