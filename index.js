@@ -19,7 +19,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	const param = req.getContextArgument('actions_intent_option', 'OPTION').value;	
+	const param = req.getContextArgument('actions_intent_OPTION', 'OPTION').value;	
 	
 	    var myObj = [
     {
