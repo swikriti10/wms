@@ -17,7 +17,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	var myObj = [
+	 myObj = [
     {
         'CustomerID': "ALFKI",
         'CompanyName': "Alfreds Futterkiste",
@@ -32,7 +32,7 @@ restService.post("/slack-test", function (req, res) {
 
     }];
 
-    var obj = [];
+    
     for (i = 0; i < myObj.length; i++) {
 
         var tmp = {
