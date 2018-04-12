@@ -44,7 +44,7 @@ restService.post("/slack-test", function (req, res) {
         },
 
         possibleIntents: {
-            intent: "actions.intent.OPTION",
+            intent: "assistant.actions.intent.Text",
             inputValueData: {
                 "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
                 listSelect: {
