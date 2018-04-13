@@ -2,13 +2,13 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-//const request = require("request");
+
 const restService = express();
 var obj = [];
 var myObj = [];
 var a;
 var i=0;
-//var  speech;
+
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -19,9 +19,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	
-	  //speech =req.body.result.action? req.body.result.action : 'wrong';
-     
+	     
 	
 	    var myObj = [
     {
@@ -80,7 +78,7 @@ restService.post("/slack-test", function (req, res) {
             intent: "actions.intent.OPTION",
             data: {
                 "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                listSelect: {actions_intent_OPTION
+                listSelect: {
                     title: "List Title", 
 		    items: obj
                 }
