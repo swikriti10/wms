@@ -32,9 +32,9 @@ restService.post("/slack-test", function (req, res) {
 	
 	var  speech11 =
       req.body.result &&
-      req.body.result.parameters &&
-      req.body.result.parameters.listkey
-        ? req.body.result.parameters.listkey
+      req.body.result.contexts &&
+      req.body.result.contexts.parameters.optionkey
+        ? req.body.result.parameters.parameters.optionkey
         : "xyz";
 	
 	
