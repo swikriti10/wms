@@ -30,10 +30,7 @@ restService.post("/slack-test", function (req, res) {
         : "wrong";
 	
 	
-	var  speech11 =
-      req.body.contexts['parameters']['optionkey']? req.body.contexts['parameters']['optionkey']: "xyz";
-	
-	
+		
 	    var myObj = [
     {
         'CustomerID': "ALFKI",
