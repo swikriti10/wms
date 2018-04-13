@@ -21,7 +21,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	const app = new ActionsSdkApp({request, response}); 
-	let actionMap = new Map();
+	
 	 const param = app.getSelectedOption();
 	
 	var  speech =
