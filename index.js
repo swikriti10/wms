@@ -27,6 +27,14 @@ restService.post("/slack-test", function (req, res) {
         ? req.body.result.action
         : "wrong";
 	
+	var  speech11 =
+      req.body.result &&
+      req.body.result.resolvedQuery 
+        ? req.body.result.resolvedQuery
+        : "query";
+	
+	
+	
 	    var myObj = [
     {
         'CustomerID': "ALFKI",
@@ -61,7 +69,7 @@ restService.post("/slack-test", function (req, res) {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech:speech
+                          textToSpeech:speech11
                       }
                   }
             ],
