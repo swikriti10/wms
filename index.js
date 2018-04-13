@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
-
+const App = require('actions-on-google').DialogflowApp;
 
 
 var obj = [];
@@ -24,7 +24,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	
+	const app = new App({req, res});
 	
 	var  speech =
       req.body.result &&
