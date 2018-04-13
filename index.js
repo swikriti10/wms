@@ -27,7 +27,7 @@ restService.post("/slack-test", function (req, res) {
         ? req.body.result.action
         : "wrong";
 	
-	 var speech11=inputs.intent;
+
 	
 	    var myObj = [
     {
@@ -63,7 +63,7 @@ restService.post("/slack-test", function (req, res) {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech:speech11
+                          textToSpeech:speech
                       }
                   }
             ],
