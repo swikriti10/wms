@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
+const Assistant = require("actions-on-google").ApiAiAssistant;
+
+
+
 var obj = [];
 var myObj = [];
 var a;
@@ -20,7 +24,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	
+	const assistant = new Assistant({request: req, response: response});
 	
 	
 	var  speech =
