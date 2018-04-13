@@ -2,13 +2,13 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
+//const request = require("request");
 const restService = express();
 var obj = [];
 var myObj = [];
 var a;
 var i=0;
-var  speech;
+//var  speech;
 restService.use(
   bodyParser.urlencoded({
       extended: true
