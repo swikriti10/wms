@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const request = require("request");
 const restService = express();
 var obj = [];
 var myObj = [];
@@ -20,7 +20,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	var  speech =req.body.result.action? req.body.result.action : 'wrong';
+	  //speech =req.body.result.action? req.body.result.action : 'wrong';
      
 	
 	    var myObj = [
