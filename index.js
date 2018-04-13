@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
-const Assistant = require("actions-on-google");
 
 
 
@@ -24,7 +23,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	const assistant = new Assistant({request: req, response: res});
+	
 	
 	
 	var  speech =
