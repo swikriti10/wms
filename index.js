@@ -90,18 +90,7 @@ restService.post("/slack-test", function (req, res) {
 
 
     };
-if (speech=='actions_intent_OPTION')
-{
-	return res.json({
-        speech:speech,
-        displayText:speech,
-        
-        source: "webhook-echo-sample"
-	    
-    });
-}
-	else
-	{
+
     return res.json({
         speech:"",
         displayText:"",
@@ -114,7 +103,7 @@ if (speech=='actions_intent_OPTION')
         
     });
 
-	}
+	
  
 
 });
