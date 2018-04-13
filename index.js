@@ -94,8 +94,19 @@ restService.post("/slack-test", function (req, res) {
 
 
     };
-
+if(speech=="actions_intent_OPTION")
+{
     return res.json({
+        speech:"Item selected",
+        displayText:"Item selected",
+        
+        source: "webhook-echo-sample",
+	   
+    });
+}
+	else
+	{
+	 return res.json({
         speech:"",
         displayText:"",
         
@@ -105,8 +116,8 @@ restService.post("/slack-test", function (req, res) {
         }
 
         
-    });
-
+    });	
+	}
 	
  
 
