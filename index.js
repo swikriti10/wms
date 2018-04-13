@@ -8,6 +8,7 @@ var obj = [];
 var myObj = [];
 var a;
 var i=0;
+var  speech;
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -19,7 +20,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	var  speech =req.body.result.action ;
+	var  speech =req.body.result.action? req.body.result.action : 'wrong';
      
 	
 	    var myObj = [
@@ -89,13 +90,13 @@ restService.post("/slack-test", function (req, res) {
 
 
     };
-if (speech=="actions_intent_OPTION")
+if (speech=='actions_intent_OPTION')
 {
 	return res.json({
         speech:speech,
         displayText:speech,
         
-        source: "webhook-echo-sample",
+        source: "webhook-echo-sample"
 	    
     });
 }
