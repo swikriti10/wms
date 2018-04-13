@@ -24,7 +24,7 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	const assistant = new Assistant({request: req, response: response});
+	const assistant = new Assistant({request: req, response: res});
 	
 	
 	var  speech =
