@@ -94,13 +94,37 @@ restService.post("/slack-test", function (req, res) {
 
 
     };
+	
+	var slack = {
+
+        expect_user_response: true,
+        rich_response: {
+            items: [
+                  {
+                      simpleResponse: {
+                          textToSpeech:"hiii"
+                      }
+                  }
+            ]
+            
+        }
+
+           };
+	
+	
+	
+
+	
 if(speech=="actions_intent_OPTION")
 {
     return res.json({
-        speech:"Item selected",
-        displayText:"Item selected",
+        speech:"",
+        displayText:"",
         
         source: "webhook-echo-sample",
+	    	    data: {
+            google:slack
+        }
 	   
     });
 }
