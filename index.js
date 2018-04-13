@@ -19,7 +19,8 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	
+	var  speech =req.body.result.action ;
+     
 	
 	    var myObj = [
     {
@@ -78,7 +79,7 @@ restService.post("/slack-test", function (req, res) {
             intent: "actions.intent.OPTION",
             data: {
                 "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                listSelect: {
+                listSelect: {actions_intent_OPTION
                     title: "List Title", 
 		    items: obj
                 }
@@ -88,7 +89,18 @@ restService.post("/slack-test", function (req, res) {
 
 
     };
-
+if (speech=="actions_intent_OPTION")
+{
+	return res.json({
+        speech:speech,
+        displayText:speech,
+        
+        source: "webhook-echo-sample",
+	    
+    });
+}
+	else
+	{
     return res.json({
         speech:"",
         displayText:"",
@@ -101,7 +113,7 @@ restService.post("/slack-test", function (req, res) {
         
     });
 
-
+	}
  
 
 });
