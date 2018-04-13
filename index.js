@@ -21,6 +21,12 @@ restService.use(bodyParser.json());
 restService.post("/slack-test", function (req, res) {
 	     
 	
+	var  speech =
+      req.body.result &&
+      req.body.result.action 
+        ? req.body.result.action
+        : "wrong";
+	
 	    var myObj = [
     {
         'CustomerID': "ALFKI",
