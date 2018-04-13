@@ -28,10 +28,9 @@ restService.post("/slack-test", function (req, res) {
         : "wrong";
 	
 	var  speech11 =
-      req.body.result &&
-      req.body.result.parameters &&
-      req.body.result.parameters.listkey
-        ? req.body.result.parameters.listkey
+       req.body.result &&
+      req.body.result.resolvedQuery 
+        ? req.body.result.resolvedQuery
         : "listkey";
 
 	
