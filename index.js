@@ -27,9 +27,7 @@ restService.post("/slack-test", function (req, res) {
         ? req.body.result.action
         : "wrong";
 	
-	var  speech11 =
-      req.body.result? req.body.result : "optnkey";
-	
+	 var speech11=inputs.intent;
 	
 	    var myObj = [
     {
