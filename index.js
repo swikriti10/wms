@@ -21,6 +21,9 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
+	
+	const app = new ActionsSdkApp({request, response});
+	
 	var  speech =
       req.body.result &&
       req.body.result.action 
