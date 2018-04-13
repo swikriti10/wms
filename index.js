@@ -21,14 +21,18 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	
-	const app = new DialogflowApp({request:req, response:res});
+	
 	
 	var  speech =
       req.body.result &&
       req.body.result.action 
         ? req.body.result.action
         : "wrong";
-	
+	var  speech11 =
+      req.body.result &&
+      req.body.result.resolvedQuery 
+        ? req.body.result.resolvedQuery
+        : "query";
 	
 	
 	    var myObj = [
@@ -65,7 +69,7 @@ restService.post("/slack-test", function (req, res) {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech:speech
+                          textToSpeech:speech11
                       }
                   }
             ],
