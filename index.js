@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
-const Assistant = require("actions-on-google").ApiAiAssistant;
+const Assistant = require("actions-on-google");
 
 
 
