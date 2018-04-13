@@ -20,7 +20,12 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-	const app = new ActionsSdkApp({request, response});     
+	const app = new ActionsSdkApp({request, response}); 
+	let actionMap = new Map();
+actionMap.set(app.StandardIntents.OPTION, () => {
+   const param = app.getSelectedOption();
+});
+
 	
 	var  speech =
       req.body.result &&
