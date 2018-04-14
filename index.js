@@ -136,7 +136,17 @@ let actionMap = new Map();
 actionMap.set(assistant.StandardIntents.OPTION, () => {
   const param = assistant.getSelectedOption();
 	
- assistant.tell(param);
+  return res.json({
+        speech: "hi",
+        displayText: "hi",
+
+        source: "webhook-echo-sample",
+
+        
+
+
+
+    });
 
 
 });
