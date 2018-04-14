@@ -35,8 +35,8 @@ restService.post("/slack-test", function (req, res) {
 	var  speech11 =
       req.body.result &&
       req.body.result.parameters &&
-      req.body.result.parameters.listkey
-        ? req.body.result.parameters.listkey
+      req.body.result.parameters.key
+        ? req.body.result.parameters.key
         : "xx";
 		
 	    var myObj = [
