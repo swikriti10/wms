@@ -43,7 +43,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
 	
  // assistant.askForText({ text_to_speech: param });
 
-	
+});	
 	
 	
 	
@@ -103,7 +103,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech: param
+                          textToSpeech: speech
                       }
                   }
             ],
@@ -152,7 +152,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
 
     });
 
-});
+
 
 
 });
