@@ -33,7 +33,7 @@ restService.post("/slack-test", function (req, res) {
         : "wrong";
 	
 	
-	 var key=JSON.parse(req);
+	 var key=JSON.parse(req.body);
 	
 	var  speech11 =
       req.body.result &&
