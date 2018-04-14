@@ -12,6 +12,7 @@ var obj = [];
 var myObj = [];
 var a;
 var i = 0;
+const param;
 
 restService.use(
   bodyParser.urlencoded({
@@ -26,12 +27,6 @@ restService.post("/slack-test", function (req, res) {
 //const app = new ActionsSdkApp({ request:, response: res });
 //const app = new DialogflowApp({request: req, response: res});
 	//var a=app.getSelectedOption() ;
-	const assistant = new ActionsSdkApp({request: req, response: res});
-let actionMap = new Map();
-actionMap.set(assistant.StandardIntents.OPTION, () => {
-  const param = assistant.getSelectedOption();
-  
-});
 	
 
    // const app = new App({req, res});
@@ -83,7 +78,20 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
         obj.push(tmp);
 
     }
-
+	
+	if(speech=="actions_intent_OPTION")
+	   {
+		   
+const assistant = new ActionsSdkApp({request: req, response: res});
+let actionMap = new Map();
+actionMap.set(assistant.StandardIntents.OPTION, () => {
+  const param = assistant.getSelectedOption();
+  assistant.askForText({ text_to_speech: param });
+});
+	   
+	   }
+else
+{
     var slack_message = {
 
         expect_user_response: true,
@@ -141,7 +149,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
     });
 
 
-
+}
 
 });
 
