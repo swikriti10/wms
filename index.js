@@ -31,11 +31,12 @@ restService.post("/slack-test", function (req, res) {
 
    // const app = new App({req, res});
 
-   // const param = app.getContextArgument('actions_intent_option',
-   //  'OPTION').value;
+   // 
 
-	
-	
+	const assistant = new ActionsSdkApp({request: req, response: res});
+  
+	const param = assistant.getContextArgument('actions_intent_option',
+     'OPTION').value;
 	
 	
 	
@@ -95,7 +96,7 @@ restService.post("/slack-test", function (req, res) {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech: speech
+                          textToSpeech: param
                       }
                   }
             ],
@@ -129,32 +130,8 @@ restService.post("/slack-test", function (req, res) {
 
     };
 	
-	if(speech=="actions_intent_OPTION")
-	   {
-	   const assistant = new ActionsSdkApp({request: req, response: res});
-let actionMap = new Map();
-actionMap.set(assistant.StandardIntents.OPTION, () => {
-  const param = assistant.getSelectedOption();
 	
-  return res.json({
-        speech: "hi",
-        displayText: "hi",
-
-        source: "webhook-echo-sample",
-
-        
-
-
-
-    });
-
-
-});
-	   }
-	   else
-	   {
-	  
-
+	   
 
     return res.json({
         speech: "",
@@ -170,7 +147,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
 
     });
 	
-	 }
+	 
 
 
 });
