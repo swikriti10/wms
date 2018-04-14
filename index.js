@@ -21,6 +21,7 @@ restService.use(bodyParser.json());
 restService.post("/slack-test", function (req, res) {
 
     const app = new ActionsSdkApp({ request: req, response: res });
+  const NAME_ACTION = 'input.welcome';
 
     function welcomeIntent(app) {
         app.askWithList('Which of these looks good?',
@@ -44,7 +45,7 @@ restService.post("/slack-test", function (req, res) {
     }
 
     const actionMap = new Map();
-    actionMap.set(app.StandardIntents.TEXT, welcomeIntent);
+    actionMap.set(NAME_ACTION, welcomeIntent);
     actionMap.set(app.StandardIntents.OPTION, optionIntent);
     app.handleRequest(actionMap);
 });
