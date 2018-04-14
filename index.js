@@ -46,7 +46,7 @@ restService.post("/slack-test", function (req, res) {
 
     const actionMap = new Map();
     actionMap.set(NAME_ACTION, welcomeIntent);
-    actionMap.set(app.StandardIntents.OPTION, optionIntent);
+    //actionMap.set(app.StandardIntents.OPTION, optionIntent);
     app.handleRequest(actionMap);
 });
 
