@@ -27,8 +27,13 @@ restService.post("/slack-test", function (req, res) {
 //const app = new DialogflowApp({request: req, response: res});
 	//var a=app.getSelectedOption() ;
 	const assistant = new ActionsSdkApp({request: req, response: res});
-
+let actionMap = new Map();
+actionMap.set(assistant.StandardIntents.OPTION, () => {
+  const param = assistant.getSelectedOption();
+  
+});
 	
+
    // const app = new App({req, res});
 
    // const param = app.getContextArgument('actions_intent_option',
@@ -49,6 +54,8 @@ restService.post("/slack-test", function (req, res) {
       req.body.result.parameters.key
         ? req.body.result.parameters.key
         : "xx";
+	
+
 
     var myObj = [
 {
