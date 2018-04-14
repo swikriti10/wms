@@ -30,6 +30,9 @@ restService.post("/slack-test", function (req, res) {
 	
 	//const app = new App({req, res});
 	
+	const param = app.getContextArgument('actions_intent_option',
+    'OPTION').value;
+	
 	var  speech =
       req.body.result &&
       req.body.result.action 
