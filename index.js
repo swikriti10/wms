@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
-const App = require("actions-on-google").DialogflowApp;
+//const App = require("actions-on-google").DialogflowApp;
 //const  ActionsSdkApp  = require("actions-on-google");
 
 var obj = [];
@@ -24,7 +24,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 //const app = new ActionsSdkApp({ request:, response: res });
-const app = new DialogflowApp({request: req, response: res});
+//const app = new DialogflowApp({request: req, response: res});
 	//var a=app.getSelectedOption() ;
 	
 	
