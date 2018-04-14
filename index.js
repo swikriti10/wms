@@ -40,9 +40,9 @@ restService.post("/slack-test", function (req, res) {
 let actionMap = new Map();
 actionMap.set(assistant.StandardIntents.OPTION, () => {
   const param = assistant.getSelectedOption();
-	a=param;
+	
  // assistant.askForText({ text_to_speech: param });
-});
+
 	
 	
 	
@@ -152,7 +152,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
 
     });
 
-
+});
 
 
 });
