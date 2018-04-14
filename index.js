@@ -32,6 +32,9 @@ restService.post("/slack-test", function (req, res) {
         ? req.body.result.action
         : "wrong";
 	
+	
+	 var key=req['originalRequest']['data']['inputs'][0]['arguments'][0]['textValue'];
+	
 	var  speech11 =
       req.body.result &&
       req.body.result.parameters &&
