@@ -8,11 +8,6 @@ const restService = express();
 //const App = require("actions-on-google").DialogflowApp;
 //const  ActionsSdkApp  = require("actions-on-google");
 const ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
-var obj = [];
-var myObj = [];
-const a="";
-var i = 0;
-
 
 restService.use(
   bodyParser.urlencoded({
@@ -24,129 +19,34 @@ restService.use(bodyParser.json());
 
 
 restService.post("/slack-test", function (req, res) {
-//const app = new ActionsSdkApp({ request:, response: res });
-//const app = new DialogflowApp({request: req, response: res});
-	//var a=app.getSelectedOption() ;
-	
 
-   // const app = new App({req, res});
+    const assistant = new ActionsSdkApp({ request: req, response: res });
 
-   // 
-
-	const assistant = new ActionsSdkApp({request: req, response: res});
-  
-	//const param = assistant.getContextArgument('actions_intent_option',
-     //'OPTION').value;
-	
-	
-	
-    var speech =
-      req.body.result &&
-      req.body.result.action
-        ? req.body.result.action
-        : "wrong";
-
-
-    //var key=JSON.stringify(req.body);
-
-    var speech11 =
-      req.body.result &&
-      req.body.result.parameters &&
-      req.body.result.parameters.key
-        ? req.body.result.parameters.key
-        : "xx";
-	
-
-
-    var myObj = [
-{
-    'CustomerID': "ALFKI",
-    'CompanyName': "Alfreds Futterkiste",
-    'ContactName': "Maria Anders"
-
-
-},
-{
-    'CustomerID': "ANATR",
-    'CompanyName': "Ana Trujillo Emparedados y helados",
-    'ContactName': "Ana Trujillo"
-
-}];
-
-    for (; i < myObj.length; i++) {
-
-        var tmp = {
-            'optionInfo': { 'key': myObj[i].CustomerID },
-            'title': myObj[i].CompanyName,
-            'description': myObj[i].ContactName
-        };
-
-        obj.push(tmp);
-
+    function welcomeIntent(app) {
+        app.askWithList('Which of these looks good?',
+          app.buildList('List title')
+           .addItems([
+             app.buildOptionItem(SELECTION_KEY_ONE,
+               ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+               .setTitle('Number one'),
+             app.buildOptionItem(SELECTION_KEY_TWO,
+               ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+               .setTitle('Number two'),
+           ]));
     }
-	
-		  
-    var slack_message = {
 
-        expect_user_response: true,
-        rich_response: {
-            items: [
-                  {
-                      simpleResponse: {
-                          textToSpeech: speech
-                      }
-                  }
-            ],
-            suggestions: [
-				{
-				    title: "List"
-				},
-				{
-				    title: "Carousel"
-				},
-				{
-				    title: "Suggestions"
-				}
-            ]
-
-
-        },
-
-        systemIntent: {
-            intent: "actions.intent.OPTION",
-            data: {
-                "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-                listSelect: {
-                    title: "List Title",
-                    items: obj
-                }
-            }
+    function optionIntent(app) {
+        if (app.getSelectedOption() === SELECTION_KEY_ONE) {
+            app.tell('Number one is a great choice!');
+        } else {
+            app.tell('Number two is a great choice!');
         }
+    }
 
-
-
-    };
-	
-	
-	   
-
-    return res.json({
-        speech: "",
-        displayText: "",
-
-        source: "webhook-echo-sample",
-
-        data: {
-            google: slack_message
-        }
-
-
-
-    });
-	
-	 
-
-
+    const actionMap = new Map();
+    actionMap.set(app.StandardIntents.TEXT, welcomeIntent);
+    actionMap.set(app.StandardIntents.OPTION, optionIntent);
+    app.handleRequest(actionMap);
 });
 
 
