@@ -103,7 +103,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech: a
+                          textToSpeech: param
                       }
                   }
             ],
