@@ -7,7 +7,7 @@ const restService = express();
 
 //const App = require("actions-on-google").DialogflowApp;
 //const  ActionsSdkApp  = require("actions-on-google");
-
+var ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 var obj = [];
 var myObj = [];
 var a;
@@ -26,7 +26,8 @@ restService.post("/slack-test", function (req, res) {
 //const app = new ActionsSdkApp({ request:, response: res });
 //const app = new DialogflowApp({request: req, response: res});
 	//var a=app.getSelectedOption() ;
-	
+	const assistant = new ActionsSdkApp({request: req, response: res});
+
 	
    // const app = new App({req, res});
 
