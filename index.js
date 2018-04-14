@@ -24,8 +24,11 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 
-
-    const app = new App({req, res});
+const app = new DialogflowApp({request: req, response: res});
+	var a=app.getSelectedOption() ;
+	
+	
+   // const app = new App({req, res});
 
    // const param = app.getContextArgument('actions_intent_option',
    //  'OPTION').value;
