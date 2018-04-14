@@ -35,8 +35,8 @@ restService.post("/slack-test", function (req, res) {
 
 	const assistant = new ActionsSdkApp({request: req, response: res});
   
-	const param = assistant.getContextArgument('actions_intent_option',
-     'OPTION').value;
+	//const param = assistant.getContextArgument('actions_intent_option',
+     //'OPTION').value;
 	
 	
 	
