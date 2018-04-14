@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
-const App = require('actions-on-google').DialogflowApp;
+const App = require("actions-on-google").DialogflowApp;
 
 
 var obj = [];
@@ -27,8 +27,8 @@ restService.post("/slack-test", function (req, res) {
 
     const app = new App({req, res});
 
-    const param = app.getContextArgument('actions_intent_option',
-     'OPTION').value;
+   // const param = app.getContextArgument('actions_intent_option',
+   //  'OPTION').value;
 
     var speech =
       req.body.result &&
