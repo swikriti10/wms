@@ -6,7 +6,11 @@ const bodyParser = require("body-parser");
 const restService = express();
 
 //const App = require('actions-on-google').DialogflowApp;
+var apiai = require("apiai");
 
+var access_token = "3cf858180df14335aa5d90d117e88a70";
+
+var app = apiai(access_token);
 
 var obj = [];
 var myObj = [];
