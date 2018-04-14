@@ -10,7 +10,7 @@ const restService = express();
 const ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 var obj = [];
 var myObj = [];
-var a;
+const a="";
 var i = 0;
 
 
@@ -40,6 +40,7 @@ restService.post("/slack-test", function (req, res) {
 let actionMap = new Map();
 actionMap.set(assistant.StandardIntents.OPTION, () => {
   const param = assistant.getSelectedOption();
+	a=param;
  // assistant.askForText({ text_to_speech: param });
 });
 	
@@ -102,7 +103,7 @@ actionMap.set(assistant.StandardIntents.OPTION, () => {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech: speech
+                          textToSpeech: a
                       }
                   }
             ],
