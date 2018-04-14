@@ -18,12 +18,12 @@ restService.use(
 restService.use(bodyParser.json());
 
 
-restService.post("/slack-test", function (req, res) {
+
 
     
  function list () {
  // const app = new ActionsSdkApp({request, response});
-   const app = new ActionsSdkApp({ request: req, response: res });
+   const app = new ActionsSdkApp({ request, response });
   app.askWithList('Alright! Here are a few things you can learn. Which sounds interesting?',
     // Build a list
     app.buildList('Things to learn about')
@@ -52,7 +52,7 @@ restService.post("/slack-test", function (req, res) {
       )
   );
 }
-});
+
 
 restService.listen(process.env.PORT || 8000, function () {
     console.log("Server up and listening");
