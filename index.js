@@ -7,12 +7,12 @@ const restService = express();
 
 //const App = require("actions-on-google").DialogflowApp;
 //const  ActionsSdkApp  = require("actions-on-google");
-var ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
+const ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 var obj = [];
 var myObj = [];
 var a;
 var i = 0;
-const param;
+
 
 restService.use(
   bodyParser.urlencoded({
@@ -40,7 +40,7 @@ restService.post("/slack-test", function (req, res) {
 let actionMap = new Map();
 actionMap.set(assistant.StandardIntents.OPTION, () => {
   const param = assistant.getSelectedOption();
-  assistant.askForText({ text_to_speech: param });
+ // assistant.askForText({ text_to_speech: param });
 });
 	
 	
