@@ -115,24 +115,30 @@ restService.post("/echo", function (req, res) {
           }
           
       }
-
-      return res.json({
-          speech: result,
-          displayText: result,
-          data: {
-              google: {
-                  expect_user_response: false
+      if(result=="You do not seem to have any active Orders!" ||result=="No data")
+      {
+          return res.json({
+              speech: result,
+              displayText: result,
+              data: {
+                  google: {
+                      expect_user_response: false
                 
-              }
-          },
-          source: "wms"
-      });
+                  }
+              },
+              source: "wms"
+          });
+      }
+      
+      else{
+          return ({
+              speech: result,
+              displayText: result,
+              source: "wms"
+          });
+      }
 
-      //return ({
-      //    speech: result,
-      //    displayText: result,
-      //    source: "wms"
-      //});
+
 
   });
 
