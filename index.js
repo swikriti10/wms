@@ -20,7 +20,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 
-    const assistant = new ActionsSdkApp({ request: req, response: res });
+    const app = new ActionsSdkApp({ request: req, response: res });
 
     function welcomeIntent(app) {
         app.askWithList('Which of these looks good?',
