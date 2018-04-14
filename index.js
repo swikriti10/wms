@@ -34,6 +34,18 @@ restService.post("/slack-test", function (req, res) {
    // const param = app.getContextArgument('actions_intent_option',
    //  'OPTION').value;
 
+	
+	
+	const assistant = new ActionsSdkApp({request: req, response: res});
+let actionMap = new Map();
+actionMap.set(assistant.StandardIntents.OPTION, () => {
+  const param = assistant.getSelectedOption();
+  assistant.askForText({ text_to_speech: param });
+});
+	
+	
+	
+	
     var speech =
       req.body.result &&
       req.body.result.action
@@ -79,19 +91,10 @@ restService.post("/slack-test", function (req, res) {
 
     }
 	
-	if(speech=="actions_intent_OPTION")
-	   {
+	
 		   
-const assistant = new ActionsSdkApp({request: req, response: res});
-let actionMap = new Map();
-actionMap.set(assistant.StandardIntents.OPTION, () => {
-  const param = assistant.getSelectedOption();
-  assistant.askForText({ text_to_speech: param });
-});
-	   
-	   }
-else
-{
+
+	  
     var slack_message = {
 
         expect_user_response: true,
@@ -149,7 +152,7 @@ else
     });
 
 
-}
+
 
 });
 
