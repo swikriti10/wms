@@ -24,7 +24,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 	const DialogflowApp = require('actions-on-google');
- const app = new DialogflowApp({request: request, response: response});
+ const app = new DialogflowApp({request: req, response: res});
 
 	//const app = new App({req, res});
 	
