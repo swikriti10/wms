@@ -49,12 +49,7 @@ restService.post("/slack-test", function (req, res) {
         ? req.body.result.parameters.key
         : "xx";
 
-    if (speech == "actions_intent_OPTION") {
-         param = assistant.getArgument('OPTION');
-    }
-    else {
-         param = "hi";
-    }
+   
 
 
     var myObj = [
