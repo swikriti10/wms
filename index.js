@@ -2,13 +2,14 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const request = require("request");
+var result = "";
+var cresult="";
+let url="";
+var a = "";
+//var app = express();
 const restService = express();
-
-//const App = require("actions-on-google").DialogflowApp;
-//const  ActionsSdkApp  = require("actions-on-google");
-const ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
-
+//var speech = "";
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -16,44 +17,127 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
+restService.post("/echo", function (req, res) {
+
+      
+    var  ordernum =
+      req.body.result &&
+      req.body.result.parameters &&
+      req.body.result.parameters.ordernum
+        ? req.body.result.parameters.ordernum
+        : "Noordernum";
+
+    var confirmvalue =
+    req.body.result &&
+    req.body.result.parameters &&
+    req.body.result.parameters.confirmvalue
+      ? req.body.result.parameters.confirmvalue
+      : "Noconfirmvalue";
 
 
+    var  speech =
+        req.body.result &&
+        req.body.result.parameters &&
+        req.body.result.parameters.echoText
+          ? req.body.result.parameters.echoText
+          : "Wrong";
 
+    var param =
+    req.body.result &&
+    req.body.result.parameters &&
+    req.body.result.parameters.orderID
+      ? req.body.result.parameters.orderID
+      :"Noparam";
+
+    //const url = "http://services.odata.org/V3/Northwind/Northwind.svc/Customers('ALFKI')?$format=json";
+    // const url = "http://services.odata.org/V3/Northwind/Northwind.svc/Customers('" + speech + "')?$format=json";
 
     
- function list () {
- // const app = new ActionsSdkApp({request, response});
-   const app = new ActionsSdkApp({ request, response });
-  app.askWithList('Alright! Here are a few things you can learn. Which sounds interesting?',
-    // Build a list
-    app.buildList('Things to learn about')
-      // Add the first item to the list
-      .addItems(app.buildOptionItem('MATH_AND_PRIME',
-        ['math', 'math and prime', 'prime numbers', 'prime'])
-        .setTitle('Math & prime numbers')
-        .setDescription('42 is an abundant number because the sum of its ' +
-        'proper divisors 54 is greater…')
-        .setImage('http://example.com/math_and_prime.jpg', 'Math & prime numbers'))
-      // Add the second item to the list
-      .addItems(app.buildOptionItem('EGYPT',
-        ['religion', 'egpyt', 'ancient egyptian'])
-        .setTitle('Ancient Egyptian religion')
-        .setDescription('42 gods who ruled on the fate of the dead in the ' +
-        'afterworld. Throughout the under…')
-        .setImage('http://example.com/egypt', 'Egypt')
-      )
-      // Add third item to the list
-      .addItems(app.buildOptionItem('RECIPES',
-        ['recipes', 'recipe', '42 recipes'])
-        .setTitle('42 recipes with 42 ingredients')
-        .setDescription('Here\'s a beautifully simple recipe that\'s full ' +
-        'of flavor! All you need is some ginger and…')
-        .setImage('http://example.com/recipe', 'Recipe')
-      )
-  );
-}
+    // const url="https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/order.xsjs"
+    //const url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${speech}`;
+    //let url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${x}`
+    // const url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${speech}`
 
+    if(param=="Noparam" && confirmvalue=="Noconfirmvalue" && ordernum=="Noordernum")
+    {
+        url="https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/order.xsjs"
+        // const url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${param}`
+    }
 
-restService.listen(process.env.PORT || 8000, function () {
-    console.log("Server up and listening");
+    else if(param!="Noparam" && confirmvalue=="Noconfirmvalue" && ordernum=="Noordernum")
+    {
+        url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${param}`
+    }
+    else 
+    {
+        if(confirmvalue=="yes"||confirmvalue=="Yes"||confirmvalue=="YES")
+        {
+            url=`https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderconfirm.xsjs?ToNum=${ordernum}`
+            
+        }
+        else{
+            url="";
+            cresult="Select Order Number To Pick";
+        }
+    }
+
+   
+
+    request.get(url, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            //  let json = JSON.parse(body);
+            //console.log(" city :" + json.value[0].CompanyName);
+            //result = speech+ " ,"+ json.value[0].CompanyName;
+            // result = speech + " ," + json.CompanyName;
+
+         
+            result =body ;
+          
+         
+          
+         
+        }
+        else
+        {
+            if(cresult!="")
+            {
+                result=cresult;
+            }
+            else{
+                result = "No data";
+            }
+          
+        }
+
+        if(result=="You do not seem to have any active Orders!" ||result=="No data")
+        {
+            return res.json({
+                speech: result,
+                displayText: result,
+                data: {
+                    google: {
+                        expect_user_response: false
+                
+                    }
+                },
+                source: "wms"
+            });
+        }
+      
+        else{
+            return ({
+                speech: result,
+                displayText: result,
+                source: "wms"
+            });
+        }
+
+    });
+
+  
+
+});
+
+restService.listen(process.env.PORT || 8005, function () {
+    console.log("Server Running");
 });
