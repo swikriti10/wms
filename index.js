@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const Assistant = require('actions-on-google').ActionsSdkApp;
 const restService = express();
-const param="";
+
 //const App = require('actions-on-google').DialogflowApp;
 
 
@@ -48,9 +48,14 @@ restService.post("/slack-test", function (req, res) {
       req.body.result.parameters.key
         ? req.body.result.parameters.key
         : "xx";
-
-   
-
+if(speech=="actions_intent_OPTION")
+   {
+ var param= assistant.getSelectedOption();
+}
+else
+{
+	var param="";
+}
 
     var myObj = [
 {
@@ -86,7 +91,7 @@ restService.post("/slack-test", function (req, res) {
             items: [
                   {
                       simpleResponse: {
-                          textToSpeech: param
+                          textToSpeech: speech
                       }
                   }
             ],
