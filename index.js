@@ -78,14 +78,7 @@ restService.post("/slack-test", function (req, res) {
 	
 	
 	
-	if(speech=="actions_intent_OPTION")
-   {
- var param= assistant.getSelectedOption();
-}
-else
-{
-	var param="";
-}
+	
 
 
     var slack_message = {
