@@ -105,22 +105,34 @@ restService.post("/echo", function (req, res) {
             }
             else{
                 result = "No data";
-                return res.json({
-                    speech: result,
-                    displayText: result,
-                    data: {
-                        google: {
-                            expect_user_response: false
-                
-                        }
-                    },
-                    source: "wms"
-                });
+
             }
           
         }
 
-       
+        if(result=="No data")
+        {
+            return res.json({
+                speech: result,
+                displayText: result,
+                data: {
+                    google: {
+                        expect_user_response: false
+                
+                    }
+                },
+                source: "wms"
+            });
+        }
+      
+        else{
+            return ({
+                speech: result,
+                displayText: result,
+                source: "wms"
+            });
+        }
+
 
     });
 
