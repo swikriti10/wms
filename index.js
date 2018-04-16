@@ -95,10 +95,10 @@ restService.post("/echo", function (req, res) {
             result =body ;
           if(result=="You do not seem to have any active Orders!")
             {
-                var a =true;
+                var a =false;
             }
             else{
-                var a =false;
+                var a =true;
             }
          
           
