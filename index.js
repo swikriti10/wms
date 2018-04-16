@@ -48,14 +48,6 @@ restService.post("/slack-test", function (req, res) {
       req.body.result.parameters.key
         ? req.body.result.parameters.key
         : "xx";
-if(speech=="actions_intent_OPTION")
-   {
- var param= assistant.getSelectedOption();
-}
-else
-{
-	var param="";
-}
 
     var myObj = [
 {
@@ -83,6 +75,18 @@ else
         obj.push(tmp);
 
     }
+	
+	
+	
+	if(speech=="actions_intent_OPTION")
+   {
+ var param= assistant.getSelectedOption();
+}
+else
+{
+	var param="";
+}
+
 
     var slack_message = {
 
