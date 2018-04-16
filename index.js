@@ -115,7 +115,7 @@ restService.post("/echo", function (req, res) {
             displayText: result,
                         data: {
                   google: {
-                      expect_user_response: false
+                      expect_user_response: true
                 
                   }
               },
