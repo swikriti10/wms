@@ -84,6 +84,7 @@ restService.post("/echo", function (req, res) {
    
 
     request.get(url, function (error, response, body) {
+       
         if (!error && response.statusCode == 200) {
             //  let json = JSON.parse(body);
             //console.log(" city :" + json.value[0].CompanyName);
@@ -92,7 +93,7 @@ restService.post("/echo", function (req, res) {
 
          
             result =body ;
-          
+            var a =true;
          
           
          
@@ -105,7 +106,7 @@ restService.post("/echo", function (req, res) {
             }
             else{
                 result = "No data";
-
+                var a =false;
             }
           
         }
@@ -113,12 +114,13 @@ restService.post("/echo", function (req, res) {
         return res.json({
             speech: result,
             displayText: result,
-                        data: {
-                  google: {
-                      expect_user_response: true
+
+            data: {
+                google: {
+                    expect_user_response: a
                 
-                  }
-              },
+                }
+            },
             source: "wms"
         });
 
