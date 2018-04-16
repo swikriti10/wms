@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const Assistant = require('actions-on-google').ApiAiAssistant;
+const Assistant = require('actions-on-google').ActionsSdkApp;
 const restService = express();
 const param="";
 //const App = require('actions-on-google').DialogflowApp;
