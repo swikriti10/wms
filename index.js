@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const Assistant = require('actions-on-google').ApiAiAssistant;
 const restService = express();
-
+const param="";
 //const App = require('actions-on-google').DialogflowApp;
 
 
@@ -50,10 +50,10 @@ restService.post("/slack-test", function (req, res) {
         : "xx";
 
     if (speech == "actions_intent_OPTION") {
-        const param = assistant.getArgument('OPTION');
+         param = assistant.getArgument('OPTION');
     }
     else {
-        const param = "hi";
+         param = "hi";
     }
 
 
