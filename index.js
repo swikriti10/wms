@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const Assistant = require('actions-on-google').ActionsSdkApp;
+//const Assistant = require('actions-on-google').ActionsSdkApp;
 const restService = express();
 
 //const App = require('actions-on-google').DialogflowApp;
@@ -24,7 +24,7 @@ restService.use(bodyParser.json());
 
 restService.post("/slack-test", function (req, res) {
 
-    const assistant = new Assistant({ request: req, response: res });
+  //  const assistant = new Assistant({ request: req, response: res });
 
    
 
