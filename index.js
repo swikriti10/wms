@@ -2,14 +2,17 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
-var result = "";
-var cresult="";
-let url="";
-var a = "";
-//var app = express();
+const Assistant = require('actions-on-google').ApiAiAssistant;
 const restService = express();
-//var speech = "";
+
+//const App = require('actions-on-google').DialogflowApp;
+
+
+var obj = [];
+var myObj = [];
+var a;
+var i = 0;
+
 restService.use(
   bodyParser.urlencoded({
       extended: true
@@ -17,126 +20,133 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
-restService.post("/echo", function (req, res) {
-
-      
-    var  ordernum =
-      req.body.result &&
-      req.body.result.parameters &&
-      req.body.result.parameters.ordernum
-        ? req.body.result.parameters.ordernum
-        : "Noordernum";
-
-    var confirmvalue =
-    req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.confirmvalue
-      ? req.body.result.parameters.confirmvalue
-      : "Noconfirmvalue";
 
 
-    var  speech =
-        req.body.result &&
-        req.body.result.parameters &&
-        req.body.result.parameters.echoText
-          ? req.body.result.parameters.echoText
-          : "Wrong";
+restService.post("/slack-test", function (req, res) {
 
-    var param =
-    req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.orderID
-      ? req.body.result.parameters.orderID
-      :"Noparam";
-
-    //const url = "http://services.odata.org/V3/Northwind/Northwind.svc/Customers('ALFKI')?$format=json";
-    // const url = "http://services.odata.org/V3/Northwind/Northwind.svc/Customers('" + speech + "')?$format=json";
-
-    
-    // const url="https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/order.xsjs"
-    //const url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${speech}`;
-    //let url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${x}`
-    // const url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${speech}`
-
-    if(param=="Noparam" && confirmvalue=="Noconfirmvalue" && ordernum=="Noordernum")
-    {
-        url="https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/order.xsjs"
-        // const url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${param}`
-    }
-
-    else if(param!="Noparam" && confirmvalue=="Noconfirmvalue" && ordernum=="Noordernum")
-    {
-        url = `https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderitems.xsjs?ToNum=${param}`
-    }
-    else 
-    {
-        if(confirmvalue=="yes"||confirmvalue=="Yes"||confirmvalue=="YES")
-        {
-            url=`https://mdcs0014121431trial.hanatrial.ondemand.com/ChatBotProject/services/orderconfirm.xsjs?ToNum=${ordernum}`
-            
-        }
-        else{
-            url="";
-            cresult="Select Order Number To Pick";
-        }
-    }
+    const assistant = new Assistant({ request: req, response: res });
 
    
 
-    request.get(url, function (error, response, body) {
-       
-        if (!error && response.statusCode == 200) {
-            //  let json = JSON.parse(body);
-            //console.log(" city :" + json.value[0].CompanyName);
-            //result = speech+ " ,"+ json.value[0].CompanyName;
-            // result = speech + " ," + json.CompanyName;
+    //const app = new App({req, res});
 
-         
-            result =body ;
-           if(result=="You do not seem to have any active Orders!")
-            {
-                var a =false;
-            }
-            else{
-                var a =true;
-            }
-         
-          
-         
-        }
-        else
-        {
-            if(cresult!="")
-            {
-                result=cresult;
-                var a =true;
-            }
-            else{
-                result = "No data";
-                var a =false;
-            }
-          
-        }
+    //const param = app.getContextArgument('actions_intent_option',
+    // 'OPTION').value;
 
-        return res.json({
-            speech: result,
-            displayText: result,
+    var speech =
+      req.body.result &&
+      req.body.result.action
+        ? req.body.result.action
+        : "wrong";
 
+
+    //var key=JSON.stringify(req.body);
+
+    var speech11 =
+      req.body.result &&
+      req.body.result.parameters &&
+      req.body.result.parameters.key
+        ? req.body.result.parameters.key
+        : "xx";
+
+    if (speech == "actions_intent_OPTION") {
+        const param = assistant.getArgument('OPTION');
+    }
+    else {
+        const param = "hi";
+    }
+
+
+    var myObj = [
+{
+    'CustomerID': "ALFKI",
+    'CompanyName': "Alfreds Futterkiste",
+    'ContactName': "Maria Anders"
+
+
+},
+{
+    'CustomerID': "ANATR",
+    'CompanyName': "Ana Trujillo Emparedados y helados",
+    'ContactName': "Ana Trujillo"
+
+}];
+
+    for (; i < myObj.length; i++) {
+
+        var tmp = {
+            'optionInfo': { 'key': myObj[i].CustomerID },
+            'title': myObj[i].CompanyName,
+            'description': myObj[i].ContactName
+        };
+
+        obj.push(tmp);
+
+    }
+
+    var slack_message = {
+
+        expect_user_response: true,
+        rich_response: {
+            items: [
+                  {
+                      simpleResponse: {
+                          textToSpeech: param
+                      }
+                  }
+            ],
+            suggestions: [
+				{
+				    title: "List"
+				},
+				{
+				    title: "Carousel"
+				},
+				{
+				    title: "Suggestions"
+				}
+            ]
+
+
+        },
+
+        systemIntent: {
+            intent: "actions.intent.OPTION",
             data: {
-                google: {
-                    expect_user_response: a
-                
+                "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
+                listSelect: {
+                    title: "List Title",
+                    items: obj
                 }
-            },
-            source: "wms"
-        });
+            }
+        }
+
+
+
+    };
+
+
+    return res.json({
+        speech: "",
+        displayText: "",
+
+        source: "webhook-echo-sample",
+
+        data: {
+            google: slack_message
+        }
+
+
 
     });
 
-  
+
+
 
 });
 
-restService.listen(process.env.PORT || 8005, function () {
-    console.log("Server Running");
+
+
+restService.listen(process.env.PORT || 8000, function () {
+    console.log("Server up and listening");
 });
