@@ -110,40 +110,17 @@ restService.post("/echo", function (req, res) {
           
         }
 
-        if(result=="No data")
-        {
-            return res.json({
-                //speech: result,
-                //displayText: result,
-                data: {
-                    google: {
-                        expect_user_response: false,
-                        rich_response:{
-                            items:[
-                               {
-                                   simple_response:{
-                                       ssml:"<speak>Great see you at your appointment!</speak>",
-                                       display_text:result
-                                   }
-                               }
-                            ],
-                            "suggestions":[      ]
-                        },
+        return res.json({
+            speech: result,
+            displayText: result,
+                        data: {
+                  google: {
+                      expect_user_response: false
                 
-                    }
-                },
-                source: "wms"
-            });
-        }
-      
-        else{
-            return ({
-                speech: result,
-                displayText: result,
-                source: "wms"
-            });
-        }
-
+                  }
+              },
+            source: "wms"
+        });
 
     });
 
