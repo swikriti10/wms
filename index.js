@@ -101,7 +101,10 @@ restService.post("/echo", function (req, res) {
                 {
                 var a =false;
             }
-
+           else if(result=="Picked Failed!!")
+                   {
+                   var a =false;
+                   }
             else{
                 var a =true;
             }
