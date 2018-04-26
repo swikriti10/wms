@@ -127,8 +127,8 @@ restService.post("/echo", function (req, res) {
         }
 
         return res.json({
-            speech: result,
-            displayText: result,
+            speech: a,
+            displayText: a,
 
             data: {
                 google: {
