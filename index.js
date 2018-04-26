@@ -97,16 +97,15 @@ restService.post("/echo", function (req, res) {
             {
                 var a =false;
             }
-           
-            else{
-              if(result=="Picked Successfully!!!")
+          else if(result=="Picked Successfully!!!")
                 {
                 var a =false;
             }
-              else{
-              
+           
+            else{
+                           
                 var a =true;
-              }
+              
             }
          
           
@@ -127,8 +126,8 @@ restService.post("/echo", function (req, res) {
         }
 
         return res.json({
-            speech: a,
-            displayText: a,
+            speech: result,
+            displayText: result,
 
             data: {
                 google: {
